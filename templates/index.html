@@ -1,0 +1,56 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "style.css" %}">
+    </head>
+    <body
+        {% if exception_occurred %}
+            style=" background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80');"
+        {% else %}
+            style="background-image:url('{{ image_url }}');"
+        {% endif %}
+    >
+       <div class="container">
+        <div class="weather-card">
+            <h2>Weather App</h2>
+            <form class="search-box" method="POST">
+                {% csrf_token %}
+                <input type="text"  name="city" placeholder="Enter City" >
+                <button type="submit">Search</button>
+            </form>
+            <div class="weather-info">
+                <div class="temp">
+                    <h1>{{ temp }}&#176;C</h1>
+                    <h3>{{city}}</h3>
+                    
+                </div>
+                <div class="icon">
+                    <img src="https://openweathermap.org/img/w/{{icon}}.png" alt="weather icon">
+                    <p>{{description}}</p>
+                    <span>{{day}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if exception_occurred%}
+    <script>
+        window.onload=function(){
+            alert("City information not available to our API");
+        }
+    </script>
+    {% endif %}
+    </body>
+</html>
