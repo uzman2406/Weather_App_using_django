@@ -120,8 +120,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://weather-app-using-django.onrender.com",
-    "http://weather-app-using-django.onrender.com",
+    "https://weather-app-using-django-2.onrender.com",
+    "http://weather-app-using-django-2.onrender.com",
 ]
 
 # Default primary key field type
